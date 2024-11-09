@@ -1,0 +1,133 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row">
+    <div class="col-8 offset-2">
+        <br>
+        <h2>Edit Your Listing</h2>
+        <form method="post" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation">
+            
+            <!-- School Name -->
+            <div class="mb-3">
+                <label for="schoolName" class="form-label">College Name</label>
+                <input name="schoolName" value="<%= listing.schoolName %>" type="text" class="form-control" required>
+                <div class="valid-feedback">School name looks good!</div>
+            </div>
+            
+            <!-- Academic Year -->
+            <div class="mb-3">
+                <label for="academicYear" class="form-label">Academic Year</label>
+                <input name="academicYear" value="<%= listing.academicYear %>" type="text" class="form-control" required>
+                <div class="invalid-feedback">Please enter a valid academic year.</div>
+            </div>
+
+            <!-- Total Students -->
+            <div class="mb-3">
+                <label for="totalStudents" class="form-label">Total Students</label>
+                <input name="totalStudents" value="<%= listing.totalStudents %>" type="number" class="form-control" required>
+                <div class="invalid-feedback">Please enter a valid number of students.</div>
+            </div>
+
+            <!-- Total Teachers -->
+            <div class="mb-3">
+                <label for="totalTeachers" class="form-label">Total Teachers</label>
+                <input name="totalTeachers" value="<%= listing.totalTeachers %>" type="number" class="form-control" required>
+                <div class="invalid-feedback">Please enter a valid number of teachers.</div>
+            </div>
+
+            <!-- Total Expenses -->
+            <div class="mb-3">
+                <label for="totalExpenses" class="form-label">Total Expenses (INR)</label>
+                <input name="totalExpenses" value="<%= listing.totalExpenses %>" type="number" class="form-control" required>
+                <div class="invalid-feedback">Please enter valid expenses.</div>
+            </div>
+
+            <!-- Total Revenue -->
+            <div class="mb-3">
+                <label for="totalRevenue" class="form-label">Total Revenue (INR)</label>
+                <input name="totalRevenue" value="<%= listing.totalRevenue %>" type="number" class="form-control" required>
+                <div class="invalid-feedback">Please enter valid revenue.</div>
+            </div>
+
+            <!-- Location -->
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input name="location" value="<%= listing.location %>" type="text" class="form-control" required>
+                <div class="invalid-feedback">Please enter a valid location.</div>
+            </div>
+
+            <!-- Country -->
+            <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <input name="country" value="<%= listing.country %>" type="text" class="form-control" required>
+                <div class="invalid-feedback">Please enter a valid country.</div>
+            </div>
+
+            <!-- Image Link -->
+            <div class="mb-3">
+                <label for="image" class="form-label">Image Link</label>
+                <input name="image" value="<%= listing.image %>" type="text" class="form-control" required>
+            </div>
+
+            <!-- Student Performance (Add fields dynamically if needed) -->
+            <h5>Student Performance:</h5>
+            <% if (listing.studentPerformance && listing.studentPerformance.length > 0) { %>
+                <% listing.studentPerformance.forEach((student, index) => { %>
+                    <div class="mb-3">
+                        <label for="studentId<%= index %>" class="form-label">Student ID</label>
+                        <input name="studentPerformance[<%= index %>][studentId]" value="<%= student.studentId %>" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="studentName<%= index %>" class="form-label">Student Name</label>
+                        <input name="studentPerformance[<%= index %>][name]" value="<%= student.name %>" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="studentGrade<%= index %>" class="form-label">Grade</label>
+                        <input name="studentPerformance[<%= index %>][grade]" value="<%= student.grade %>" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="studentMarks<%= index %>" class="form-label">Marks</label>
+                        <input name="studentPerformance[<%= index %>][totalMarks]" value="<%= student.totalMarks %>" type="number" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="studentAttendance<%= index %>" class="form-label">Attendance (%)</label>
+                        <input name="studentPerformance[<%= index %>][attendancePercentage]" value="<%= student.attendancePercentage %>" type="number" class="form-control" required>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No student performance data available. Add student performance details.</p>
+            <% } %>
+
+            <!-- Teacher Performance (Add fields dynamically if needed) -->
+            <h5>Teacher Performance:</h5>
+            <% if (listing.teacherPerformance && listing.teacherPerformance.length > 0) { %>
+                <% listing.teacherPerformance.forEach((teacher, index) => { %>
+                    <div class="mb-3">
+                        <label for="teacherId<%= index %>" class="form-label">Teacher ID</label>
+                        <input name="teacherPerformance[<%= index %>][teacherId]" value="<%= teacher.teacherId %>" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="teacherName<%= index %>" class="form-label">Teacher Name</label>
+                        <input name="teacherPerformance[<%= index %>][name]" value="<%= teacher.name %>" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="teacherSubject<%= index %>" class="form-label">Subject</label>
+                        <input name="teacherPerformance[<%= index %>][subject]" value="<%= teacher.subject %>" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="teacherClassesTaught<%= index %>" class="form-label">Total Classes Taught</label>
+                        <input name="teacherPerformance[<%= index %>][totalClassesTaught]" value="<%= teacher.totalClassesTaught %>" type="number" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="teacherFeedback<%= index %>" class="form-label">Average Feedback</label>
+                        <input name="teacherPerformance[<%= index %>][averageStudentFeedback]" value="<%= teacher.averageStudentFeedback %>" type="number" step="0.1" class="form-control" required>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No teacher performance data available. Add teacher performance details.</p>
+            <% } %>
+
+            <!-- Submit Button -->
+            <button class="btn-one mt-3">Update Listing</button>
+            <br><br>
+        </form>   
+    </div>     
+</div>

@@ -1,0 +1,29 @@
+<%- layout("/layouts/boilerplate") %>
+
+<div class="container mt-4">
+  <h1>College Report: <%= report.schoolName %> - <%= report.academicYear %></h1>
+  <% if (report.imageUrl) { %>
+    <div class="report-image">
+      <img src="<%= report.imageUrl %>" alt="College Image" class="img-fluid">
+    </div>
+  <% } %>
+
+  <div class="row">
+    <div class="col-12">
+      <h3>Student Performance</h3>
+      <p>Average Marks: <%= report.studentPerformanceAvg.avgMarks %></p>
+      <p>Average Attendance: <%= report.studentPerformanceAvg.avgAttendance %>%</p>
+
+      <h3>Teacher Performance</h3>
+      <p>Average Classes Taught: <%= report.teacherPerformanceAvg.avgClassesTaught %></p>
+      <p>Average Feedback: <%= report.teacherPerformanceAvg.avgFeedback %></p>
+
+      <h3>Financial Health</h3>
+      <p>Status: <%= report.financialHealth %></p>
+
+      <h3>College Grade: <%= report.collegeGrade %></h3>
+      <br>
+      <a href="/dashboard" class="btn btn-secondary mt-3">Dashboard: Tips & Tricks</a>
+    </div>
+  </div>
+</div>

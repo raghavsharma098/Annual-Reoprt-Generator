@@ -1,0 +1,67 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row">
+  <div class="col-8 offset-2">
+    <h1>Dashboard: Tips and Tricks to Improve College Performance</h1>
+
+    <!-- Display Tips -->
+    <h3>Tips and Tricks:</h3>
+    <ul>
+      <% tips.forEach(tip => { %>
+        <li><%= tip %></li>
+      <% }) %>
+    </ul>
+
+    <!-- Display Graph -->
+    <h3>Performance Analysis</h3>
+    <canvas id="performanceChart" width="400" height="200"
+      data-student-marks="<%= JSON.stringify(performanceData.studentMarks) %>"
+      data-student-attendance="<%= JSON.stringify(performanceData.studentAttendance) %>"
+      data-teacher-feedback="<%= JSON.stringify(performanceData.teacherFeedback) %>">
+    </canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      // Retrieve data from the canvas element's custom data attributes
+      const canvas = document.getElementById('performanceChart');
+      const studentMarks = JSON.parse(canvas.getAttribute('data-student-marks'));
+      const studentAttendance = JSON.parse(canvas.getAttribute('data-student-attendance'));
+      const teacherFeedback = JSON.parse(canvas.getAttribute('data-teacher-feedback'));
+
+      console.log(studentMarks, studentAttendance, teacherFeedback);  // Debug log
+
+      // Create the chart using Chart.js
+      const ctx = canvas.getContext('2d');
+      const chart = new Chart(ctx, {
+        type: 'line',  // Use line chart
+        data: {
+          labels: ['Student 1', 'Student 2', 'Student 3', 'Student 4', 'Student 5'],  // Labels for X-axis
+          datasets: [{
+            label: 'Student Marks',
+            data: studentMarks,  // Marks data
+            borderColor: 'rgb(75, 192, 192)',
+            fill: false
+          }, {
+            label: 'Student Attendance',
+            data: studentAttendance,  // Attendance data
+            borderColor: 'rgb(255, 99, 132)',
+            fill: false
+          }, {
+            label: 'Teacher Feedback',
+            data: teacherFeedback,  // Teacher feedback data
+            borderColor: 'rgb(54, 162, 235)',
+            fill: false
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>
+  </div>
+</div>

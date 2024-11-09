@@ -1,0 +1,80 @@
+<%- layout("/layouts/boilerplate") %>
+<div class="row">
+  <div class="col-8 offset-2">
+    <form action="/generateReport" method="POST">
+      <!-- School Name -->
+      <div class="mb-3">
+        <label for="schoolName" class="form-label">College Name:</label>
+        <input type="text" class="form-control" name="schoolName" required>
+      </div>
+
+      <!-- Academic Year -->
+      <div class="mb-3">
+        <label for="academicYear" class="form-label">Academic Year:</label>
+        <input type="text" class="form-control" name="academicYear" required>
+      </div>
+
+      <!-- Total Students -->
+      <div class="mb-3">
+        <label for="totalStudents" class="form-label">Total Students:</label>
+        <input type="number" class="form-control" name="totalStudents" required>
+      </div>
+
+      <!-- Total Teachers -->
+      <div class="mb-3">
+        <label for="totalTeachers" class="form-label">Total Teachers:</label>
+        <input type="number" class="form-control" name="totalTeachers" required>
+      </div>
+
+      <!-- Total Revenue -->
+      <div class="mb-3">
+        <label for="totalRevenue" class="form-label">Total Revenue:</label>
+        <input type="number" class="form-control" name="totalRevenue" required>
+      </div>
+
+      <!-- Total Expenses -->
+      <div class="mb-3">
+        <label for="totalExpenses" class="form-label">Total Expenses:</label>
+        <input type="number" class="form-control" name="totalExpenses" required>
+      </div>
+
+      <!-- Student Performance -->
+      <div class="mb-3">
+        <label for="studentPerformance" class="form-label">Student Performance (JSON array):</label>
+        <textarea class="form-control" name="studentPerformance" required>
+          [{"totalMarks": 75, "attendancePercentage": 85}, {"totalMarks": 80, "attendancePercentage": 90}]
+        </textarea>
+      </div>
+
+      <!-- Teacher Performance -->
+      <div class="mb-3">
+        <label for="teacherPerformance" class="form-label">Teacher Performance (JSON array):</label>
+        <textarea class="form-control" name="teacherPerformance" required>
+          [{"totalClassesTaught": 25, "averageStudentFeedback": 4.5}, {"totalClassesTaught": 28, "averageStudentFeedback": 4.7}]
+        </textarea>
+      </div>
+
+      <!-- Location -->
+      <div class="mb-3">
+        <label for="location" class="form-label">Location:</label>
+        <input type="text" class="form-control" name="location" required>
+      </div>
+
+      <!-- Country -->
+      <div class="mb-3">
+        <label for="country" class="form-label">Country:</label>
+        <input type="text" class="form-control" name="country" required>
+      </div>
+
+      <!-- Image URL -->
+      <div class="mb-3">
+        <label for="imageUrl" class="form-label">College Image URL:</label>
+        <input type="text" class="form-control" name="imageUrl" placeholder="Enter image URL (e.g., http://example.com/image.jpg)">
+        <small class="form-text text-muted">Provide a valid image URL.</small>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary">Generate Report</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,139 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row">
+    <div class="col-8 offset-2">
+        <h2>Create New Listing</h2>
+        <form method="POST" action="/dashboard">
+            <!-- School Information -->
+            <h3>School Information</h3>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="schoolName" class="form-label">School Name:</label>
+                    <input type="text" name="schoolName" class="form-control" placeholder="Enter school name" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="academicYear" class="form-label">Academic Year:</label>
+                    <input type="text" name="academicYear" class="form-control" placeholder="e.g. 2023-2024" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="totalStudents" class="form-label">Total Students:</label>
+                    <input type="number" name="totalStudents" class="form-control" placeholder="Number of students" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="totalTeachers" class="form-label">Total Teachers:</label>
+                    <input type="number" name="totalTeachers" class="form-control" placeholder="Number of teachers" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="totalExpenses" class="form-label">Total Expenses:</label>
+                    <input type="number" name="totalExpenses" class="form-control" placeholder="Total annual expenses" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="totalRevenue" class="form-label">Total Revenue:</label>
+                    <input type="number" name="totalRevenue" class="form-control" placeholder="Total annual revenue" required>
+                </div>
+            </div>
+
+            <!-- Student Performance -->
+            <h3>Student Performance</h3>
+            <div class="student-performance-container">
+                <h4>Student 1</h4>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="studentId1" class="form-label">Student ID:</label>
+                        <input type="text" name="studentPerformance[0][studentId]" class="form-control" placeholder="e.g. S001" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="name1" class="form-label">Name:</label>
+                        <input type="text" name="studentPerformance[0][name]" class="form-control" placeholder="e.g. John Doe" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="grade1" class="form-label">Grade:</label>
+                        <input type="text" name="studentPerformance[0][grade]" class="form-control" placeholder="e.g. A" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="totalMarks1" class="form-label">Total Marks:</label>
+                        <input type="number" name="studentPerformance[0][totalMarks]" class="form-control" placeholder="e.g. 85" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="attendancePercentage1" class="form-label">Attendance Percentage:</label>
+                        <input type="number" name="studentPerformance[0][attendancePercentage]" class="form-control" placeholder="e.g. 90" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more students as needed (e.g., Student 2, Student 3, etc.) -->
+
+            <!-- Teacher Performance -->
+            <h3>Teacher Performance</h3>
+            <div class="teacher-performance-container">
+                <h4>Teacher 1</h4>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="teacherId1" class="form-label">Teacher ID:</label>
+                        <input type="text" name="teacherPerformance[0][teacherId]" class="form-control" placeholder="e.g. T001" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="teacherName1" class="form-label">Teacher Name:</label>
+                        <input type="text" name="teacherPerformance[0][name]" class="form-control" placeholder="e.g. Ms. Smith" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="subject1" class="form-label">Subject:</label>
+                        <input type="text" name="teacherPerformance[0][subject]" class="form-control" placeholder="e.g. Math" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="totalClassesTaught1" class="form-label">Total Classes Taught:</label>
+                        <input type="number" name="teacherPerformance[0][totalClassesTaught]" class="form-control" placeholder="e.g. 50" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="averageStudentFeedback1" class="form-label">Average Student Feedback:</label>
+                        <input type="number" name="teacherPerformance[0][averageStudentFeedback]" class="form-control" placeholder="e.g. 4.5" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more teachers as needed (e.g., Teacher 2, Teacher 3, etc.) -->
+
+            <!-- Location and Image -->
+            <h3>School Location & Image</h3>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="location" class="form-label">Location:</label>
+                    <input type="text" name="location" class="form-control" placeholder="Enter school location" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="country" class="form-label">Country:</label>
+                    <input type="text" name="country" class="form-control" placeholder="e.g. India" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label for="image" class="form-label">Image URL:</label>
+                    <input type="text" name="image" class="form-control" placeholder="Enter image URL (optional)" required>
+                </div>
+            </div>
+
+            <!-- Financial Information -->
+            <h3>Financial Information</h3>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="price" class="form-label">Price (e.g. cost per student):</label>
+                    <input type="number" name="price" class="form-control" placeholder="e.g. 1200" required>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
+    </div>
+</div>

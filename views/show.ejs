@@ -1,0 +1,63 @@
+<% layout("/layouts/boilerplate") %>
+<%- layout("/layouts/boilerplate") %>
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+        <h3>Listing Details</h3>
+    </div>
+    <div class="card col-6 offset-2">
+        <img src="<%= listing.image %>" class="card-img-top show-img" alt="listing_image">
+        <div class="card-body">
+            <p class="card-text">
+                <b>School Name:</b> <%= listing.schoolName %><br>
+                <i>Academic Year:</i> <%= listing.academicYear %><br>
+                <b>Total Students:</b> <%= listing.totalStudents %><br>
+                <b>Total Teachers:</b> <%= listing.totalTeachers %><br>
+                <b>Total Expenses:</b> &#8377;<%= listing.totalExpenses.toLocaleString("en-IN") %><br>
+                <b>Total Revenue:</b> &#8377;<%= listing.totalRevenue.toLocaleString("en-IN") %><br>
+                <b>Location:</b> <%= listing.location %><br>
+                <b>Country:</b> <%= listing.country %><br>
+            </p>
+            
+            <!-- Student Performance -->
+            <% if (listing.studentPerformance && listing.studentPerformance.length > 0) { %>
+                <h5>Student Performance:</h5>
+                <ul>
+                    <% for (let student of listing.studentPerformance) { %>
+                        <li>
+                            <b><%= student.name %></b>: Grade <%= student.grade %>, Marks <%= student.totalMarks %>, Attendance <%= student.attendancePercentage %>%<br>
+                        </li>
+                    <% } %>
+                </ul>
+            <% } else { %>
+                <p>No student performance data available.</p>
+            <% } %>
+
+            <!-- Teacher Performance -->
+            <% if (listing.teacherPerformance && listing.teacherPerformance.length > 0) { %>
+                <h5>Teacher Performance:</h5>
+                <ul>
+                    <% for (let teacher of listing.teacherPerformance) { %>
+                        <li>
+                            <b><%= teacher.name %></b>: Subject <%= teacher.subject %>, Classes Taught <%= teacher.totalClassesTaught %>, Feedback <%= teacher.averageStudentFeedback %>/5<br>
+                        </li>
+                    <% } %>
+                </ul>
+            <% } else { %>
+                <p>No teacher performance data available.</p>
+            <% } %>
+
+        </div>
+    </div>
+
+    <br>
+
+    <div class="btns">
+        <a href="/listings/<%= listing._id %>/edit" class="btn offset-2 btn-dark btn-one btn-edit">Edit</a>
+
+        <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
+            <button class="btn btn-dark offset-4">Delete</button>
+            <br><br>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,33 @@
+<%- layout("/layouts/boilerplate") %>
+
+<div class="row mt-3">
+  <div class="col-8 offset-2">
+    <h2 class="text-center mb-4">Welcome! Register Your College</h2>
+    
+    <form action="/register" method="POST">
+      
+      <!-- Email Field -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" name="email" class="form-control" required>
+      </div>
+      
+      <!-- Password Field -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input type="password" name="password" class="form-control" required>
+      </div>
+      
+      <!-- User ID Field -->
+      <div class="mb-3">
+        <label for="userId" class="form-label">User ID:</label>
+        <input type="text" name="userId" class="form-control" required>
+      </div>
+      
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Register</button>
+      </div>
+    </form>
+  </div>
+</div>
